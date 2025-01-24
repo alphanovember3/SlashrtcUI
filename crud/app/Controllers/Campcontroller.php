@@ -44,19 +44,8 @@ class Campcontroller extends BaseController
         $db = \Config\Database::connect();
         // $query = 'select *, ( select email from users where users.id = campaign.superid ) as supervisor from campaign LIMIT $perPage OFFSET $offset';
         // $resultTable = $db->query($query);
-
-
-
-
-
+ 
         $data['pagename'] = 'camphome';
-
-        // $data['pagedata'] = ['superuser'=> $resultTable->getResult()];
-
-
-
-
-        // $data['pager'] = $this->user->pager;
 
 
         $page = $this->request->getVar('page') ? $this->request->getVar('page') : 1;

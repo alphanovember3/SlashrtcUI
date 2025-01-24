@@ -5,6 +5,7 @@ const { Server } = require('socket.io');
 const cors = require('cors');
 const { MongoClient } = require("mongodb");
 const connection = require('./connection');
+const myFirstQueue = require('./bullReceiver')
 
 const app = express();
 app.use(cors());
@@ -62,7 +63,9 @@ io.on('connection',(socket)=>{
         message ,
         timestamp: new Date().getTime(),
       }
-      db.collection('messages').insertOne(msg);
+      //sending message in bullQ
+      myFirstQueue.add(msg);
+      // db.collection('messages').insertOne(msg);
       io.to(room).emit('chat_msg',msg);
       }catch(err){
         console.log(err);
